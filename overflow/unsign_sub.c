@@ -11,6 +11,7 @@
  * cause strlen return an unsigned int, there sub result also unsigned int 
  * there always s is long than t
 */
+
 int 
 strlonger(char *s, char *t)
 {
