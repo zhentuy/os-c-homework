@@ -32,6 +32,7 @@ read_column_numbers( int columns[], int max )
 	while( num < max && scanf( "%d", &columns[num] ) == 1 && columns[num] >= 0 ){
 		num += 1;
 		printf( "got number: %d\n", columns[num] );
+		printf( "times: %d\n", num );
     }
 
 	/*
