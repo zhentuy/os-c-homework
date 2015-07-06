@@ -39,4 +39,17 @@ int main(void){
     printf("offset of  sb.a = %ld \n", offsetof(struct SB, a));
     printf("offset of  sb.b = %ld \n", offsetof(struct SB, b));
     printf("offset of  sb.c = %ld \n", offsetof(struct SB, c));
+
+    struct WEI{
+        unsigned a :4;
+        unsigned b :16;
+        unsigned c :32;
+    } seg;
+    seg.a = 1;
+    seg.b = 1;
+    seg.c = 1;
+    printf("struct segment bits filed visit  \n");
+    printf("value of wei = %x \n", seg);
+    printf("value of wei = %u \n", seg);
+    printf("size of wei = %ld \n", sizeof(seg));
 }
