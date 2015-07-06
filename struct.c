@@ -4,6 +4,21 @@
 */
 #include <stdio.h>
 #include <stddef.h>
+#include <string.h>
+
+const char *byte_to_binary(long x)
+{
+    static char b[17];
+    b[0] = '\0';
+
+    int z;
+    for (z = 128*128; z > 0; z >>= 1)
+    {
+        strcat(b, ((x & z) == z) ? "1" : "0");
+    }
+
+    return b;
+}
 
 int main(void){
 
@@ -50,6 +65,6 @@ int main(void){
     seg.c = 1;
     printf("struct segment bits filed visit  \n");
     printf("value of wei = %x \n", seg);
-    printf("value of wei = %u \n", seg);
+    printf("value of wei = %s \n", byte_to_binary((long)seg));
     printf("size of wei = %ld \n", sizeof(seg));
 }
