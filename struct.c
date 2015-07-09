@@ -5,14 +5,16 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+#include <limits.h>
+#include <math.h>
 
-const char *byte_to_binary(long x)
+const char *byte_to_binary(unsigned long x)
 {
-    static char b[17];
+    static char b[65];
     b[0] = '\0';
 
-    int z;
-    for (z = 128*128; z > 0; z >>= 1)
+    unsigned long z = pow(2, 63);
+    for (; z > 0 ; z >>= 1)
     {
         strcat(b, ((x & z) == z) ? "1" : "0");
     }
@@ -57,14 +59,21 @@ int main(void){
 
     struct WEI{
         unsigned a :4;
-        unsigned b :16;
-        unsigned c :32;
-    } seg;
+        unsigned b :6;
+        unsigned c :10;
+        unsigned d :15;
+        unsigned e :15;
+    } seg, *pw;
     seg.a = 1;
     seg.b = 1;
     seg.c = 1;
+    seg.d = 1;
+    seg.e = 1;
+    pw = &seg;
+    unsigned long * lp;
+    lp = (unsigned long *)pw;
     printf("struct segment bits filed visit  \n");
-    printf("value of wei = %x \n", seg);
-    printf("value of wei = %s \n", byte_to_binary((long)seg));
+    printf("value of wei = %s \n", byte_to_binary(*lp));
+    printf("value of seg.a = %d \n", seg.a);
     printf("size of wei = %ld \n", sizeof(seg));
 }
