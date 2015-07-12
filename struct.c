@@ -60,20 +60,19 @@ int main(void){
     struct WEI{
         unsigned a :4;
         unsigned b :6;
-        unsigned c :10;
-        unsigned d :15;
-        unsigned e :15;
+        unsigned c :30;
     } seg, *pw;
     seg.a = 1;
     seg.b = 1;
-    seg.c = 1;
-    seg.d = 1;
-    seg.e = 1;
+    seg.c = pow(2,29);
     pw = &seg;
     unsigned long * lp;
     lp = (unsigned long *)pw;
+    /* 段已32位为单位，如果超过32位，会从下一个字开始*/
     printf("struct segment bits filed visit  \n");
     printf("value of wei = %s \n", byte_to_binary(*lp));
+    printf("value of seg = %x \n", seg);
     printf("value of seg.a = %d \n", seg.a);
+    printf("value of seg.c = %d \n", seg.c);
     printf("size of wei = %ld \n", sizeof(seg));
 }
