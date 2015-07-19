@@ -68,7 +68,7 @@ int main(void){
     pw = &seg;
     unsigned long * lp;
     lp = (unsigned long *)pw;
-    /* 段已32位为单位，如果超过32位，会从下一个字开始*/
+    /* 段以32位为单位，如果超过32位，会从下一个字开始*/
     printf("struct segment bits filed visit  \n");
     printf("value of wei = %s \n", byte_to_binary(*lp));
     printf("value of seg = %x \n", seg);

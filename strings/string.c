@@ -12,8 +12,11 @@ t_len(void)
 {
     char * red = "a red story ! ha ha ha";
     char bed[30] = "a bed story  ha ha ha !"; 
+    int a[30];
     printf("length of red is %d \n", (int)strlen(red));
-    printf("length of bed is %d \n", (int)strlen(bed));
+    printf("length of bed str is %d \n", (int)strlen(bed));
+    printf("length of bed is %lu \n", sizeof(bed));
+    printf("length of a is %lu \n", sizeof(a));
 }
 
 void
@@ -121,12 +124,27 @@ t_mem(void)
     memset(c, 'x', 9);
     printf("after memset   :\n  %s \n",  c);
     printf("memcmp   :\n  %d \n",  memcmp(c, b, 5));
-    printf("memchr   :\n  %s \n",  memchr(b, '5', 7));
+    printf("memchr   :\n  %s \n",  (char*)memchr(b, '5', 7));
+}
+
+void
+t_uni(void)
+{
+    union {
+        int a;
+        float b;
+        char c[4];
+    } x = {5};
+
+    x.b = 3.14;
+    printf("union  int value :  %d \n",  x.a);
+    printf("union  float value :  %f \n",  x.b);
+    printf("union  char value :  %s \n",  (char*)x.c);
 }
 
 int
 main( void )
 {
-    t_mem();
+    t_cpy();
 	return EXIT_SUCCESS;
 }
