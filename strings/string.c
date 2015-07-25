@@ -1,5 +1,5 @@
 /*
-** This program test how to use c lib getchar
+** learn stlib string function
 */
 
 #include <stdio.h>
@@ -12,11 +12,14 @@ t_len(void)
 {
     char * red = "a red story ! ha ha ha";
     char bed[30] = "a bed story  ha ha ha !"; 
+    /* 当数组不能容纳时，编译有warning， 运行打印出后面数据 */
+    char sm[3] = "aaaaa";
     int a[30];
     printf("length of red is %d \n", (int)strlen(red));
     printf("length of bed str is %d \n", (int)strlen(bed));
     printf("length of bed is %lu \n", sizeof(bed));
     printf("length of a is %lu \n", sizeof(a));
+    printf("length %s of sm is %lu \n", sm, sizeof(sm));
 }
 
 void
@@ -145,6 +148,6 @@ t_uni(void)
 int
 main( void )
 {
-    t_cpy();
+    t_len();
 	return EXIT_SUCCESS;
 }
