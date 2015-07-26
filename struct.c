@@ -22,18 +22,18 @@ const char *byte_to_binary(unsigned long x)
     return b;
 }
 
-int main(void){
-
+void 
+t_sa(void)
+{
     struct SA{
         char a;
         double b;
         char c;
-    } sa, *ps;
+    }cant_be_init,  *ps;
 
     /* 测试内存对齐，相同数据类型排列不同占内存不同*/
-    sa.a = 'n';
-    sa.b = 6.79;
-    sa.c = 10 ;
+    /* 这里cant_be_init 不能通过下面方式赋值 只能cant_be_init.a = 'a' 这样赋值*/
+    struct SA sa = { 'n', 6.79, 10 };
     ps = &sa;
     int lst = sizeof(sa);
 
@@ -57,6 +57,11 @@ int main(void){
     printf("offset of  sb.b = %ld \n", offsetof(struct SB, b));
     printf("offset of  sb.c = %ld \n", offsetof(struct SB, c));
 
+}
+
+void
+t_bit(void)
+{
     struct WEI{
         unsigned a :4;
         unsigned b :6;
@@ -75,4 +80,28 @@ int main(void){
     printf("value of seg.a = %d \n", seg.a);
     printf("value of seg.c = %d \n", seg.c);
     printf("size of wei = %ld \n", sizeof(seg));
+}
+
+typedef struct {
+    char a[10];
+    float b;
+} SA;
+
+void 
+t_param(SA aa)
+{
+    /* 不能用aa.a = "012345" 赋值，array type 'char [10]' is not assignable */
+    strcpy(aa.a, "012345");
+    aa.b = 8.09;
+    printf("on call value of aa.a = %s \n", aa.a);
+    printf("on call value of aa.b = %.2f \n", aa.b);
+}
+
+int 
+main(void){
+    SA aa = { "abcdef", 9.0 };
+    t_param(aa);
+    printf("after call value of aa.a = %s \n", aa.a);
+    printf("on call value of aa.b = %.2f \n", aa.b);
+    return 0;
 }
