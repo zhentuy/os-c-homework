@@ -4,6 +4,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void
 t_all(void)
@@ -55,8 +56,19 @@ t_err(void)
     /*  malloc: *** error for object 0x109309040: pointer being freed was not allocated */
     /*  free only can use on malloc, realloc, calloc return's pointer */
 }
+
+char *
+t_str(char const * old)
+{
+    char * new;
+    new = malloc( strlen(old) + 1 );
+    if ( new != NULL )
+        strcpy(new, old);
+    return new;
+}
+
 int 
 main(void){
-    t_err();
+    printf("after malloc %s", t_str("want jojo for fuck"));
     return 1;
 }
