@@ -50,9 +50,21 @@ t_def(void)
     /* ADD_TO('3', 777777); fall */
 }
 
+#define is_zhu 1
+#if is_zhu
+    printf("happy zhu");
+#else
+    printf("happy wang");
+
+void
+t_ifdef(void)
+{
+    int is_zhu = 1;
+}
+
 int
 main( void )
 {
-    t_def();
+    t_ifdef();
 	return EXIT_SUCCESS;
 }
