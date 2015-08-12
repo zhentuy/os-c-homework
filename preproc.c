@@ -15,6 +15,10 @@ t_predef(void)
     printf("__DATE__  is %s \n", __DATE__);
     printf("__TIME__  is %s \n", __TIME__);
     printf("__STDC__  is %d \n", __STDC__);
+#line 999999 "haozhu.py"
+    printf("after #line\n");
+    printf("__FILE__  is %s \n", __FILE__);
+    printf("__LINE__  is %d \n", __LINE__);
 }
 
 void
@@ -50,16 +54,23 @@ t_def(void)
     /* ADD_TO('3', 777777); fall */
 }
 
-#define is_zhu 1
-#if is_zhu
-    printf("happy zhu");
-#else
-    printf("happy wang");
-
 void
 t_ifdef(void)
 {
     int is_zhu = 1;
+    /* 编译阶段 变量根本没有赋值，所以用int 定义的做#if 的判断值没用 */
+#ifndef is_zhu
+    printf(" no define zhu\n");
+#define is_zhu 1
+#endif
+#if is_zhu
+    printf("happy zhu\n");
+#elif 0
+    printf("happy wang\n");
+#else
+    printf("ba wang\n");
+    /* #error "123456"  程序遇到#error 停止编译 */
+#endif
 }
 
 int
