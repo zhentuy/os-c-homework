@@ -19,9 +19,22 @@ t_pow(void)
     printf("mod result: %.2f \n", fmod(db, da));
 }
 
+void
+t_div(void)
+{
+    div_t rr;
+    rr = div(7, -3);
+    printf("result of div div_t->quot: %d \n", rr.quot);
+    printf("result of div div_t->rem: %d \n", rr.rem);
+    int rd = 7/-3;
+    int rm = 7%-3;
+    printf("result of div //: %d \n", rd);
+    printf("result of div %%: %d \n", rm);
+
+}
 int
 main( void )
 {
-    t_pow();
+    t_div();
 	return 1;
 }
